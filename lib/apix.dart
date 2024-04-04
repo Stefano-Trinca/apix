@@ -8,6 +8,10 @@ export 'src/io/file_system_entity.dart';
 //
 //
 export 'src/arithmetic.dart';
+export 'src/durations.dart';
+export 'src/context_sizes.dart';
+export 'src/context_textstyle.dart';
+export 'src/context_theme.dart';
 export 'src/comparable.dart';
 export 'src/comparator.dart';
 export 'src/function.dart';

@@ -7,6 +7,13 @@ const _ascii = 0x007f;
 const _latin1 = 0x00ff;
 
 extension StringCapitalizeExtension on String {
+
+  /// Capitalizes each word in the string, e.g.:
+  /// `hello world` becomes `Hello World`.
+  String capitalize() {
+    return split(' ').map((e) => e.capitalizeFirst()).join(' ');
+  }
+
   /// Returns a copy of this string having its first letter uppercased, or the
   /// original string, if it's empty or already starts with an upper case
   /// letter.
@@ -15,15 +22,10 @@ extension StringCapitalizeExtension on String {
   /// print('abcd'.capitalize()) // Abcd
   /// print('Abcd'.capitalize()) // Abcd
   /// ```
-  String capitalize() {
-    switch (length) {
-      case 0:
-        return this;
-      case 1:
-        return toUpperCase();
-      default:
-        return substring(0, 1).toUpperCase() + substring(1);
-    }
+  String capitalizeFirst() {
+    if (length == 0) return '';
+    if (length == 1) return toUpperCase();
+    return substring(0, 1).toUpperCase() + substring(1);
   }
 }
 

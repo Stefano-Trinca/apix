@@ -36,6 +36,16 @@ extension ListElementAtOrNull<E> on List<E> {
     if (index >= length) return null;
     return this[index];
   }
+
+  /// First element of the list or 'null' if the list is empty
+  ///
+  /// ```dart
+  /// final list = [];
+  /// final first = list.firstOrNull(); // null
+  /// ```
+  E? firstOrNull(){
+    return isEmpty ? null : this[0];
+  }
 }
 
 extension ListIndicesExtension<E> on List<E> {

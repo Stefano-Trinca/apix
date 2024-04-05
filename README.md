@@ -8,8 +8,10 @@ APIX is a Flutter package designed to facilitate and accelerate Dart code writin
 To use the `apix` package, add it to your project's Flutter dependencies by modifying the `pubspec.yaml` file:
 
 ```yaml
-dependencies:
-  apix: ^latest_version
+  apix:
+    git:
+      path: https://github.com/Stefano-Trinca/apix.git
+      ref: 0.0.2
 ```
 
 After adding the package, you can import it into your Dart project:

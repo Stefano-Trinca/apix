@@ -10,8 +10,8 @@ To use the `apix` package, add it to your project's Flutter dependencies by modi
 ```yaml
   apix:
     git:
-      path: https://github.com/Stefano-Trinca/apix.git
-      ref: 0.0.2
+      url: https://github.com/Stefano-Trinca/apix.git
+      ref: 0.0.3
 ```
 
 After adding the package, you can import it into your Dart project:

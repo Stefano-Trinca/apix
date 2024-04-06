@@ -1,7 +1,14 @@
 import 'package:apix/apix.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 extension DateTimeFlatten on DateTime {
+
+  /// Flattend the [DateTime] to year
+  ///
+  /// DateTime(year)
+  DateTime flattenYear() => DateTime(year);
+
   /// Flattend the [DateTime] to month
   ///
   /// DateTime(year,month)
@@ -56,6 +63,59 @@ extension DateTimeEvaluations on DateTime {
 
   /// Determinate if the [DateTime] is Yesterday
   bool get isYesterday => flattenDay().difference(DateTime.now().flattenDay()).inDays == -1;
+
+  /// Calculates week number from a date as per https://en.wikipedia.org/wiki/ISO_week_date#Calculation
+  int get weekNumber {
+    final dayOfYear = int.parse(DateFormat('D').format(this));
+    return ((dayOfYear - weekday + 10) / 7).floor();
+  }
+
+  /// Calculates and returns the `DateTimeRange` for the week containing this `DateTime`.
+  ///
+  /// The week range starts from Monday (inclusive) and ends on Sunday (inclusive),
+  /// based on the ISO 8601 standard, where Monday is considered the first day of the week.
+  /// This method calculates the start of the week by subtracting the current day's weekday number
+  /// minus one from the current date. The end of the week is then determined by adding six days
+  /// to the start of the week.
+  ///
+  /// Returns:
+  /// - A `DateTimeRange` object representing the start and end of the week.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime now = DateTime.now();
+  /// DateTimeRange thisWeek = now.weekRange;
+  /// print("Week starts on: ${thisWeek.start} and ends on: ${thisWeek.end}");
+  /// ```
+  DateTimeRange get weekRange{
+      DateTime startOfWeek = subtract(Duration(days: weekday - 1));
+      DateTime endOfWeek = startOfWeek.add(const Duration(days: 6));
+      return DateTimeRange(start: startOfWeek, end: endOfWeek);
+  }
+
+  /// Calculates and returns the `DateTimeRange` for the weekend of the week containing this `DateTime`.
+  ///
+  /// The weekend range starts from Saturday (inclusive) and ends on Sunday (inclusive).
+  /// This method first calculates the start of the week as Monday, then determines the start of
+  /// the weekend by adding five days to the start of the week. The end of the weekend is
+  /// calculated by adding one more day to the start of the weekend.
+  ///
+  /// Returns:
+  /// - A `DateTimeRange` object representing the start and end of the weekend.
+  ///
+  /// Example:
+  /// ```dart
+  /// DateTime now = DateTime.now();
+  /// DateTimeRange thisWeekend = now.weekendRange;
+  /// print("Weekend starts on: ${thisWeekend.start} and ends on: ${thisWeekend.end}");
+  /// ```
+  DateTimeRange get weekendRange {
+    DateTime startOfWeek = subtract(Duration(days: weekday - 1));
+    DateTime startOfWeekend = startOfWeek.add(const Duration(days: 5));
+    DateTime endOfWeekend = startOfWeekend.add(const Duration(days: 1));
+    return DateTimeRange(start: startOfWeekend, end: endOfWeekend);
+  }
+
 }
 
 extension IntSinceEpocheExt on int? {

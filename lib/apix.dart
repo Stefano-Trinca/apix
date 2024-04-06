@@ -27,3 +27,4 @@ export 'src/range.dart';
 export 'src/sorted_list.dart';
 export 'src/string.dart';
 export 'src/time_of_day.dart';
+export 'src/date_time_range.dart';

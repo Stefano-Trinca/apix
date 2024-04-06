@@ -546,7 +546,7 @@ extension IterableTakeLast<E> on Iterable<E> {
 }
 
 extension IterableFirstWhile<E> on Iterable<E> {
-  //// Returns the first elements satisfying the given [predicate].
+  /// Returns the first elements satisfying the given [predicate].
   ///
   /// ```dart
   /// val chars = [1, 2, 3, 4, 5, 6, 7, 8, 9];
